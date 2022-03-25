@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "y9MrplmYcGy3VDFRRVVfcuWrRQeOyinYLJIBKCQ4S9rgKSlvUAvJz5Fm8r7vUw7g8s3Fpq9eo55CeFmciWA3cg==",
+  "success": true,
+  "projectFilePath": "/home/pi/Desktop/Smart_Lock/Interface/Interface.csproj",
+  "expectedPackageFiles": [
+    "/home/pi/.nuget/packages/plugin.ble/2.1.2/plugin.ble.2.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
