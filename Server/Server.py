@@ -1,11 +1,9 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import ssl
-
 from io import BytesIO
-import HandlePost
+import hardware
 
 #PEM pass phrase: password
-
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -20,9 +18,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         #My code, where all errors lie (probably)
         body_str = body.decode("utf-8")
-        print(body_str)
-        output = HandlePost.handle(body_str)
-    
+        output = hardware.handle(body_str).encode()
+
         response = BytesIO()
         response.write(output)
         #response.write(body)
@@ -37,9 +34,6 @@ httpd = HTTPServer(('169.226.237.222', 8000), SimpleHTTPRequestHandler)
         keyfile="key.pem", 
         certfile='cert.pem', server_side=True)"""
         
-
-    
-
 httpd.serve_forever()
 
 #this works but I need it to be encrypted and I need to be able to write
