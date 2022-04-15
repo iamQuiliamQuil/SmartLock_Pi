@@ -1,5 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from ipaddress import ip_address
 import ssl
+import MyIP
 from io import BytesIO
 import hardware
 
@@ -25,15 +27,15 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         #response.write(body)
         self.wfile.write(response.getvalue())
 
-#get ip address with code?
-httpd = HTTPServer(('169.226.237.222', 8000), SimpleHTTPRequestHandler)
-#httpd = HTTPServer(('169.226.216.111', 8000), SimpleHTTPRequestHandler)
-#httpd = HTTPServer(('localhost', 4443), BaseHTTPRequestHandler)
-
 """httpd.socket = ssl.wrap_socket (httpd.socket, 
         keyfile="key.pem", 
         certfile='cert.pem', server_side=True)"""
         
+ip_addr = MyIP.get_ip()
+#print(ip_addr)
+
+httpd = HTTPServer((ip_addr, 8000), SimpleHTTPRequestHandler)
+    
 httpd.serve_forever()
 
 #this works but I need it to be encrypted and I need to be able to write
