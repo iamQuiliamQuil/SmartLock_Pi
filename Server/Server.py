@@ -29,7 +29,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(response.getvalue())
 
 #get ip address with code?
-httpd = HTTPServer(('127.0.0.1', 8000), SimpleHTTPRequestHandler)
+httpd = HTTPServer(('169.226.237.222', 8000), SimpleHTTPRequestHandler)
 #httpd = HTTPServer(('169.226.216.111', 8000), SimpleHTTPRequestHandler)
 #httpd = HTTPServer(('localhost', 4443), BaseHTTPRequestHandler)
 
