@@ -22,7 +22,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         #My code, where all errors lie (probably)
         body_str = body.decode("utf-8")
-        print(body_str)
+        print(body_str) 
         output = HandlePost.handle(body_str)
     
         response = BytesIO()
@@ -30,14 +30,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         #response.write(body)
         self.wfile.write(response.getvalue())
 
-#get ip address with code?
 ip_addr = MyIP.get_ip()
-#print(ip_addr)
-
 httpd = HTTPServer((ip_addr, 8000), SimpleHTTPRequestHandler)
     
-
+print("Server running at:",ip_addr)#prints ip address, we'll want
+        #remove this and do something lese eventually
 httpd.serve_forever()
 
-#this works but I need it to be encrypted and I need to be able to write
-#  custom command I THINK
+
+#this works but I need it to be encrypted 
