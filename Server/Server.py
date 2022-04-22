@@ -2,12 +2,10 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from ipaddress import ip_address
 import ssl
 import MyIP
-
 from io import BytesIO
-import HandlePost
+import hardware
 
 #PEM pass phrase: password
-
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -22,9 +20,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         #My code, where all errors lie (probably)
         body_str = body.decode("utf-8")
-        print(body_str) 
-        output = HandlePost.handle(body_str)
-    
+        output = hardware.handle(body_str).encode()
+
         response = BytesIO()
         response.write(output)
         #response.write(body)
