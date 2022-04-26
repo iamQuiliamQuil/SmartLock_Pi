@@ -1,8 +1,8 @@
 from inspect import getmembers, isfunction
 #Quillan's machine
-import hardwareIMPERSONATOR as hardware
+#import hardwareIMPERSONATOR as hardware
 #Pi
-#import hardware
+import hardware
 import UUIDManager as um
 
 #takes body decoded to string as argument 
