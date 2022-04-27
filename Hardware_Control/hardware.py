@@ -10,11 +10,11 @@ storagePath = "/home/pi/Desktop/SmartLock_Pi/Storage/"
 def handle(args):
     arguments = args.split("_", 1)
     command = arguments[0]
-    command = command[1:]
     params = ()
     if(len(arguments) > 1):
         params = arguments[1].split("_")
-
+    
+    # try the command, throw exeption if failed
     try: return globals()[command](*params)
     except Exception as e: print(repr(e))
 
@@ -28,17 +28,20 @@ def capture(resolution, filetype):
     camera.resolution = resolution
 
     sleep(2) # for camera warmup
-    filename = strftime("%d-%m-%y_%H:%M:%S." + filetype, gmtime())
+    # day-month-year-hour-minute-second
+    filename = strftime("%d-%m-%y-%H-%M-%S." + filetype, gmtime())
     camera.capture(storagePath + filename, filetype)
     camera.close()
     return filename
 
 def getCapture(filename):
     imgBytes = BytesIO()
-    filepath = storagePath + "/" + filename
+    filepath = storagePath + filename
+    print(filepath)
     with Image.open(filepath) as img:
         img.save(imgBytes, "png")
-    return imgBytes
+    imgBytes.seek(0) # start of bytes
+    return imgBytes.read()
 
 def lock():
     kit = MotorKit()
@@ -51,5 +54,3 @@ def unlock():
     for i in range(100):
         kit.stepper1.onestep(direction=stepper.BACKWARD)
     return "unlocked"
-
-getCaptures()

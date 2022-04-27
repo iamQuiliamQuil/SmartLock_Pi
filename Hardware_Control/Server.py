@@ -26,6 +26,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         #My code, where all errors lie (probably)
         body_str = body.decode("utf-8")
+        print(body_str)
 
         output = postRequestHandler.handleRequest(body_str)
 
@@ -36,7 +37,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 ip_addr = MyIP.get_ip()
 #need to change port later
-httpd = HTTPServer((ip_addr, 8001), SimpleHTTPRequestHandler)
+httpd = HTTPServer((ip_addr, 8000), SimpleHTTPRequestHandler)
 #context = ssl.SSLContext(ssl.SSLContext.set_default_verify_paths())
 
 httpd.socket = ssl.wrap_socket (httpd.socket, 
