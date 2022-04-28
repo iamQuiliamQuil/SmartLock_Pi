@@ -1,0 +1,7 @@
+#!/bin/bash
+export TWILIO_ACCOUNT_SID=AC5bea98d360df7e4d50af0fb6d8e34621
+export TWILIO_AUTH_TOKEN=284691e649e31c7afeae5fb9694d481d
+export TWILIO_NUMBER=19804093427
+export TO_NUMBER=$1
+
+curl -X POST -d "Body=$2" -d "From=$TWILIO_NUMBER" -d "To=$TO_NUMBER" "https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID/Messages" -u "$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN"
