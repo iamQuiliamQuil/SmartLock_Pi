@@ -10,14 +10,16 @@ import UUIDManager as um
 def handleRequest(request):
     #requests should have a as uuid=UUID,request=FUNCTION-ARGS
     #we make a dictionary out of components of the reqest, 
-    # each tuple correspoding to a 'key=value' in request
-    requestPieces = request.split(",")
+        # each tuple correspoding to a 'key=value' in request
+    requestPieces = request[1:].split("Q")
     requestDict = dict()
     for piece in requestPieces: #TODO: find better variable names omfg
-        piecePieces = piece.split("=")
+        piecePieces = piece.split("~")
+        print(piecePieces)
         requestDict[piecePieces[0]] = piecePieces[1]
 
-    sent_uuid = requestDict["uuid"]
+    print(requestDict)
+    sent_uuid = requestDict['uuid']
     uuidMan = um.UUIDManagerSingleton()
     if not uuidMan.UUIDIsValid(sent_uuid):
         #obviously we should not send them the invalid uuid's but this will be useful for testing for now
@@ -28,4 +30,10 @@ def handleRequest(request):
         #see hardware.handle for an explanation of the line below
         command = request.split("_", 1)[0]
         if command in hardwareFunctions:
+            print(request)
+            result = hardware.handle(request)
+            print(type(result))
+            print(type(result) is bytes)
+            if type(result) is bytes:
+                return result
             return bytes(hardware.handle(request),"utf-8")
