@@ -4,6 +4,8 @@ from adafruit_motorkit import MotorKit
 from adafruit_motor import stepper
 from picamera import PiCamera
 from io import BytesIO
+from os import listdir
+from os.path import join
 
 storagePath = "/home/pi/Desktop/SmartLock_Pi/Storage/"
 
@@ -42,6 +44,10 @@ def getCapture(filename):
         img.save(imgBytes, "png")
     imgBytes.seek(0) # start of bytes
     return imgBytes.read()
+
+def getPictureNames():
+    #sends back all png filenames joined by ~'s as one string
+    return "~".join(sorted([file for file in listdir("../Storage") if ".png" in file],reverse=True))
 
 def lock():
     kit = MotorKit()

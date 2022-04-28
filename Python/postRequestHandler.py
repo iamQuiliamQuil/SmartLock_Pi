@@ -37,3 +37,5 @@ def handleRequest(request):
             if type(result) is bytes:
                 return result
             return bytes(hardware.handle(request),"utf-8")
+        else:
+            return bytes(request+" is not a valid request name!", "utf-8")
