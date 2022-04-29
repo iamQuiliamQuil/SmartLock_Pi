@@ -1,3 +1,4 @@
+#libraries
 from PIL import Image
 from time import sleep, strftime, gmtime
 from adafruit_motorkit import MotorKit
@@ -6,6 +7,9 @@ from picamera import PiCamera
 from io import BytesIO
 from os import listdir
 from os.path import join
+
+#local files
+import sms
 
 storagePath = "/home/pi/Desktop/SmartLock_Pi/Storage/"
 
@@ -34,6 +38,7 @@ def capture(resolution, filetype):
     filename = strftime("%d-%m-%y-%H-%M-%S." + filetype, gmtime())
     camera.capture(storagePath + filename, filetype)
     camera.close()
+    sms.send("15186505491","a picture was captured!")
     return filename
 
 def getCapture(filename):
