@@ -4,7 +4,8 @@ from io import BytesIO
 
 import UUIDManager as um
 import MyIP
-import postRequestHandler 
+import postRequestHandler
+import sms
 #import hardware  
 
 #PEM pass phrase: password
@@ -43,7 +44,8 @@ httpd = HTTPServer((ip_addr, 8000), SimpleHTTPRequestHandler)
 httpd.socket = ssl.wrap_socket (httpd.socket, 
     keyfile="key.pem", 
     certfile='cert.pem', server_side=True)
-    
+
+sms.send("19146190386","server running at: "+ip_addr+":8000")
 print("Server running at:",ip_addr) #prints ip address, we'll want
         #remove this and do something lese eventually
 httpd.serve_forever()
