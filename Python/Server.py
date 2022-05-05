@@ -1,19 +1,25 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import ssl
 from io import BytesIO
+import sys
 
 import UUIDManager as um
 import MyIP
 import postRequestHandler
 import sms
+import PhoneNumberManager as pnm
+sys.path.insert(1, '../Storage')
+import PictureServer
 #import hardware  
+
+#ip_addr
 
 #PEM pass phrase: password
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        #<my code>
+
         uuidMan = um.UUIDManagerSingleton()
         new_uuid = uuidMan.generateUUID()
 
@@ -45,9 +51,16 @@ httpd.socket = ssl.wrap_socket (httpd.socket,
     keyfile="key.pem", 
     certfile='cert.pem', server_side=True)
 
-sms.send("19146190386","server running at: "+ip_addr+":8000")
-print("Server running at:",ip_addr) #prints ip address, we'll want
-        #remove this and do something lese eventually
+#if we want to keep this line at all, we should use phone num manager for it
+phone_num_man = pnm.PhoneNumberManagerSingleton()
+phone_num_man.addNum("15186505491")
+phone_nums = phone_num_man.getNums()
+for num in phone_nums:
+    sms.send(num,"Server running at: "+ip_addr+":8000")
+#sms.send("15186505491","server running at: "+ip_addr+":8000")
+print("Main Server running at:",ip_addr) #prints ip address, and that is just fine. Why remove it?
+
+PictureServer.launch(ip_addr) #server for hosting images need to be launched as well
 httpd.serve_forever()
 
 

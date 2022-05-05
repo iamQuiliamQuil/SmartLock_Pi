@@ -8,7 +8,9 @@ sys.path.insert(1, '../Python')
 import MyIP
 import postRequestHandler 
 
-def __run_server(ip_addr): #private function
+def __run_server(ip_addr): 
+    #needs to be run in the same directory as the ./launch.sh, which is what this line is for
+    os.chdir('/home/quillan/Documents/499/SmartLock_Pi/Storage')
     subprocess.check_call(["./launch.sh", "8001", ip_addr])
 
 def launch(ip_addr):
@@ -20,5 +22,7 @@ def launch(ip_addr):
     else:
         __run_server(ip_addr)
 
-print(launch(MyIP.get_ip()))
+#print(launch(MyIP.get_ip())) 
+#^exclusively for testing
+
 

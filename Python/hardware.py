@@ -56,7 +56,7 @@ def handle(args):
     if(len(arguments) > 1):
         params = arguments[1].split("_")
     
-    # try the command, throw exeption if failed
+    # try the command, throw exception if failed
     try: return globals()[command](*params)
     except Exception as e: print(repr(e))
 
