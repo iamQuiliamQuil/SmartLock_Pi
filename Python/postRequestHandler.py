@@ -51,10 +51,13 @@ def handleRequest(request):
             return bytes(result,"utf-8")
         elif command == "addPhone":
             phoneNumMan = pnm.PhoneNumberManagerSingleton()
-            return bytes(phoneNumMan.addNum(request.split("_", 1)[1]),"utf-8")
+            result = bytes(phoneNumMan.addNum(request.split("_", 1)[1]),"utf-8")
+            print("Our Current Phone Numbers:",phoneNumMan.getNums())
+            return result
         elif command == "removePhone":
-            phoneNumMan = pnm.PhoneNumberManagerSingleton()
-            return bytes(phoneNumMan.removeNum(request.split("_", 1)[1]),"utf-8")
+            result = bytes(phoneNumMan.removeNum(request.split("_", 1)[1]),"utf-8")
+            print("Our Current Phone Numbers:",phoneNumMan.getNums())
+            return result
         else:
             return bytes(request+" is not a valid request name!", "utf-8")
             #add some stuff for adding phone numbers

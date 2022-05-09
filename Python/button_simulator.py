@@ -1,16 +1,15 @@
-import keyboard
-import sms
+import RPi.GPIO as GPIO
 
-while True:
-    try:
-        if keyboard.is_pressed('q'):
-            #sms.send("15186505491", "hello from the other pi")#quillan's phone #
-            print("pressed q")
-            break
-    
-    except:
-        print("didn't press q")
-        break
+def pressed(channel):
+    print("i've been triggered")
 
-# remove the break or it will fail immediately
-# no work ):
+button = 17
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+GPIO.add_event_detect(button, GPIO.RISING, callback=pressed)
+
+input("Press enter to quit\n\n")
+
+GPIO.cleanup()
