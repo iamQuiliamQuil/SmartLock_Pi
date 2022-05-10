@@ -1,5 +1,6 @@
 # this is the python implementation of bluetooth
 # this most likely can work but wasn't tested
+# would theoretically run on the app
 import bluetooth
 
 piAddress = "E4:5F:01:92:40:3F" # the pi's mac address
