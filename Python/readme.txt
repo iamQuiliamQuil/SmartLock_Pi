@@ -2,7 +2,7 @@ This is the meat and potatoes.
 
 use command  
 python Server.py  
-or run the file with and IDE like Thonny  
+or run the file with an IDE like Thonny  
 
 --missing server explanation--  
 
