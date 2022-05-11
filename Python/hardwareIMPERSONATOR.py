@@ -1,4 +1,5 @@
-
+#exists so that Server.py can be run on a machine without all of the Pi's hardware
+#simply comment-out import hardwar and instead import hardwareIMPERSONATOR as hardware
 import sms
 
 storagePath = "/home/pi/Desktop/SmartLock_Pi/Storage/"

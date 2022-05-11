@@ -1,4 +1,7 @@
 import socket
+
+#gets our ip address for the server to launch from
+
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.settimeout(0)

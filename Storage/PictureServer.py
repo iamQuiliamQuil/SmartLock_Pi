@@ -3,10 +3,8 @@ import os
 import subprocess
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
-# insert at 1, 0 is the script path (or '' in REPL)
-sys.path.insert(1, '../Python')
-import MyIP
-import postRequestHandler 
+# We launch a python server from the command line from a python program. This is so stupid. 
+# I was under a lot of pressure. Sorry.
 
 def __run_server(ip_addr): 
     #needs to be run in the same directory as the ./launch.sh, which is what this line is for
@@ -21,8 +19,5 @@ def launch(ip_addr):
     # n equals to 0 means child process
     else:
         __run_server(ip_addr)
-
-#print(launch(MyIP.get_ip())) 
-#^exclusively for testing
 
 

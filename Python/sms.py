@@ -1,4 +1,5 @@
 import subprocess
+#just a facade for the gross way of calling bash files from a python program
 
 def send(phone_num, message):
     subprocess.check_call(['./sms.sh', phone_num, message])

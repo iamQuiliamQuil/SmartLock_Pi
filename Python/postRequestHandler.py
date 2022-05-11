@@ -31,7 +31,7 @@ def handleRequest(request):
     
     uuidMan = um.UUIDManagerSingleton()
     if not uuidMan.UUIDIsValid(sent_uuid):
-        #obviously we should not send them the invalid uuid's but this will be useful for testing for now
+        #obviously we should not send them the valid uuid's but this will be useful for testing for now
         return bytes("UUID invalid. Should be from:"+str(uuidMan.registered_uuids),"utf-8")
     else:
         hardwareFunctions = [member[0] for member in getmembers(hardware, isfunction)]
@@ -60,4 +60,3 @@ def handleRequest(request):
             return result
         else:
             return bytes(request+" is not a valid request name!", "utf-8")
-            #add some stuff for adding phone numbers

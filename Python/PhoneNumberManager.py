@@ -24,6 +24,3 @@ class PhoneNumberManagerSingleton(object):
         else:
             return "Error - Phone number: "+numToRemove+" is not a registered number!"
 
-    #def removeUUID(self, uuid_to_be_removed):
-
-
